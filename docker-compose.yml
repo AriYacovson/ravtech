@@ -1,0 +1,20 @@
+version: "3"
+services:
+  appserver:
+    container_name: server
+    hostname: localhost
+    image: ravtech
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+#      POSTGRES_DB: ravtech
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgresdata:/var/lib/postgresql/data
+    privileged: true
